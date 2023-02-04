@@ -14,6 +14,17 @@ public class House{
     private Boolean isAvailable = true;
 
     //constructor
+    public House(String type, String town, String size, double price, Boolean isFreehold, int builtYear, String isAvailable){
+        this.type = type;
+        this.town = town;
+        this.size = size;
+        this.price = price;
+        this.isFreehold = isFreehold;
+        this.builtYear = builtYear;
+        this.isAvailable = true;
+
+    }
+
     public House(String type, String town, String size, double price, Boolean isFreehold, int builtYear){
         this.type = type;
         this.town = town;
@@ -23,8 +34,6 @@ public class House{
         this.builtYear = builtYear;
         this.isAvailable = true;
     }
-
-    
 
     public String getType() {return type;}
     public void setType(String type) {this.type = type;}
@@ -48,14 +57,25 @@ public class House{
     public void setIsAvailable(Boolean isAvailable) {this.isAvailable = isAvailable;}
 
 
-    //methods
-    public void buy(String type, double price){
+    public void buy(double price){
         if (!this.isAvailable){
-            System.out.printf("The %s is not available for sale.\n",this.type);
+            System.out.printf("The %s is not available for sale.\n", this.type);
         }
         else
-        System.out.printf("Congratulations on purchasing your %s for $%.2f\n", this.type, this.price);
+        System.out.printf("Congratulations on purchasing your house for $%.2f\n",price);
         this.isAvailable = false;
+    }
+
+    public void remainingLease(){
+        int leaseLeft =  (1000 -(2023 - this.builtYear));
+        System.out.printf("There is %d years left in the lease.", leaseLeft);
+    }
+
+    //Operator overriding for string
+    @Override
+    public String toString() {
+        return "House [type=" + this.type + ", town=" + this.town + '\''+
+        "} $ " + this.price;
     }
 
 
